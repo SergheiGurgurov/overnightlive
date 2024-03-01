@@ -1,0 +1,39 @@
+{
+    "channels": [
+        "animenightlive"
+    ],
+    "contestants": [
+        {
+            "id": "animenightTMel",
+            "visible": "always",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_c602533c71ee4723adf48f0bf48b8e64/default/light/3.0"
+        },
+        {
+            "id": "animenightTMagg",
+            "visible": "always",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_2ffcce69a8f64bae8c64f0d7561518fd/default/light/3.0"
+        },
+        {
+            "id": "animenightTLiv",
+            "visible": "always",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_2339608f17c54f889988643dc7203293/default/light/3.0"
+        },
+        {
+            "id": "animenightSirj",
+            "visible": "default",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_02b863c62597470eb8f362eb0907f9e8/default/light/3.0"
+        },
+        {
+            "id": "animenightAri",
+            "visible": "default",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_eb189db81d0045e78b139582052dd145/default/light/3.0"
+        },
+        {
+            "id": "animenightTospite",
+            "visible": "default",
+            "imageUrl": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_81bf8f0b7dd54fb9b2e2ec990ee575b8/default/light/3.0"
+        }
+    ],
+    "resetTimer": 480,
+    "port": 3001
+}

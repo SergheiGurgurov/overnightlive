@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        function reviver(key, value) {
+            if (typeof value === 'object' && value !== null) {
+                if (value.dataType === 'Map') {
+                    return new Map(value.value);
+                }
+            }
+            return value;
+        }
+
+        function decode(data) {
+            return JSON.parse(data, reviver);
+        }
+
+        /**
+         * @param {{list:Map<string,
+         * {
+         * contestant:string,
+         * score:number,
+         * imageUrl:string,
+         * }>}} data 
+         */
+        function render(data) {
+            console.log('Rendering data: ', data);
+            const container = document.querySelector('#container');
+            const newContainer = document.createElement('div');
+            newContainer.style.display = "flex";
+            newContainer.style.flexDirection = "column";
+            newContainer.style.gap = "20px";
+            newContainer.id = 'container';
+            for (const [key, value] of data.list) {
+                const card = document.createElement('div');
+                card.style.display = 'flex';
+                card.style.gap = '20px';
+                card.classList.add('card');
+                const img = document.createElement('img');
+                img.src = value.imageUrl;
+                img.alt = value.contestant;
+                const score = document.createElement('span');
+                score.style.fontSize = '100px';
+                score.style.fontFamily = 'monospace';
+                score.style.fontWeight = 'bold';
+                score.style.color = 'white';
+                //drop shadow
+                score.style.textShadow = '2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000';
+                score.textContent = value.score;
+                card.appendChild(img);
+                card.appendChild(score);
+                newContainer.appendChild(card);
+            }
+
+            container.replaceWith(newContainer);
+        }
+
+        var socket = new WebSocket(`ws://${window.location.host}`);
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.log('Connected to server');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            render(decode(event.data));
+        });
+
+        // Connection closed
+        socket.addEventListener('close', function (event) {
+            console.log('Server connection closed: ', event.reason);
+        });
+
+        // Connection error
+        socket.addEventListener('error', function (event) {
+            console.log('WebSocket error: ', event);
+        });
+
+    </script>
+</body>
+
+</html>
