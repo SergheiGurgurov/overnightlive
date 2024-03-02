@@ -41,24 +41,33 @@
             newContainer.style.flexDirection = "column";
             newContainer.style.gap = "20px";
             newContainer.id = 'container';
+            newContainer.style.width = "min-content"
+            newContainer.style.float = "right"
             for (const [key, value] of data.list) {
                 const card = document.createElement('div');
+                card.style.backgroundColor = "rgba(255,255,255,0.7)"
+                card.style.paddingRight = "20px";
+                card.style.paddingLeft = "35px";
+                card.style.paddingBlock = "15px";
+                card.style.borderRadius = "100px";
+                card.style.borderTopRightRadius = "0px";
+                card.style.borderBottomRightRadius = "0px";
                 card.style.display = 'flex';
                 card.style.gap = '20px';
-                card.classList.add('card');
-                const img = document.createElement('img');
-                img.src = value.imageUrl;
-                img.alt = value.contestant;
+                card.style.justifyContent="end"
                 const score = document.createElement('span');
                 score.style.fontSize = '100px';
                 score.style.fontFamily = 'monospace';
                 score.style.fontWeight = 'bold';
-                score.style.color = 'white';
+                score.style.color = 'black';
                 //drop shadow
-                score.style.textShadow = '2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000';
+                //score.style.textShadow = '2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000';
                 score.textContent = value.score;
-                card.appendChild(img);
+                const img = document.createElement('img');
+                img.src = value.imageUrl;
+                img.alt = value.contestant;
                 card.appendChild(score);
+                card.appendChild(img);
                 newContainer.appendChild(card);
             }
 
