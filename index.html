@@ -61,7 +61,8 @@
                 score.style.fontWeight = 'bold';
                 score.style.color = 'black';
                 //drop shadow
-                //score.style.textShadow = '2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000';
+                //score.style.textShadow = '2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000';\
+                score.style.whiteSpace = "nowrap"
                 score.textContent = value.score;
                 const img = document.createElement('img');
                 img.src = value.imageUrl;
@@ -73,8 +74,9 @@
 
             container.replaceWith(newContainer);
         }
-
-        var socket = new WebSocket(`ws://${window.location.host}`);
+        
+        var socketProtocol = window.location.protocol == "https:" ? "wss:" : "ws:";
+        var socket = new WebSocket(`${socketProtocol}//${window.location.host}`);
 
         // Connection opened
         socket.addEventListener('open', function (event) {

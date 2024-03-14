@@ -13,6 +13,7 @@ function resetTimeout() {
 }
 
 function resetScore() {
+    scoreBoard.list = new Map();
     config.contestants.forEach((contestant) => {
         if (contestant.visible === "always") {
             scoreBoard.list.set(contestant.id, {
