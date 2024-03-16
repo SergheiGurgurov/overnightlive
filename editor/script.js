@@ -1,3 +1,7 @@
+/**@type {HTMLIFrameElement} */
+const iframe = document.querySelector("iframe");
+iframe.src = `https://player.twitch.tv/?autoplay=true&channel=animenightlive&parent=${window.location.hostname}`
+
 /**@type {HTMLCanvasElement} */
 const canvas = document.querySelector("#drawing-board")
 const toolbard = document.querySelector("#toolbar")
