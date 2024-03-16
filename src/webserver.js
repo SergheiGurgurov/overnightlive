@@ -3,14 +3,31 @@ const WebSocket = require('ws');
 const http = require('http');
 const path = require('path');
 const EventEmitter = require('events');
-const e = require('express');
 const port = require('../config.json').port;
+const simpleBundler = require("../lib/simple-bundler")
 
 const app = express();
+const router = express.Router();
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+router.get('/overlay', (req, res) => {
+    simpleBundler.bundle(path.join(__dirname, '../overlay/index.html'), (err, html) => {
+        if(err){
+            res.status(500).json(err).end();
+        }
+        res.status(200).send(html).end();
+    })
 });
+
+router.get("/editor",(req,res)=>{
+    simpleBundler.bundle(path.join(__dirname, '../editor/index.html'), (err, html) => {
+        if(err){
+            res.status(500).json(err).end();
+        }
+        res.status(200).send(html).end();
+    })
+})
+
+app.use("/overnightlive",router)
 
 const server = http.createServer(app);
 
@@ -28,7 +45,7 @@ wss.on('connection', ws => {
     console.log('Client connected');
 
     ws.on('message', message => {
-        console.log(`Received: ${message}`);
+        events.emit("websocket-message",message.toString())
     });
 
     ws.on('close', () => {
@@ -38,7 +55,7 @@ wss.on('connection', ws => {
 });
 
 server.listen(port, () => {
-    console.log('Listening on port:'+ port);
+    console.log('Listening on port:' + port);
 });
 
 /**

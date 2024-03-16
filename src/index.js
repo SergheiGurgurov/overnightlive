@@ -8,8 +8,15 @@ webserver.events.on('connection', ws => {
     ws.send(scoreboard.getScoreboardEncoded());
 });
 
+webserver.events.on('websocket-message',/** @param {string} message */(message)=>{
+    if(message.startsWith("{\"type\":\"canvas-update\"")){
+        webserver.sendBroadcastMessage(message);
+    }
+})
+
 chat.init(channels, (channel, tags, message, self) => {
-    console.log(`${tags['display-name']}: ${message}`);
+    //log all message
+    //console.log(`${tags['display-name']}: ${message}`);
     for (const contestant of scoreboard.contestants) {
         const occurrences = (message.match(new RegExp(contestant, 'g')) || []).length;
         if (occurrences > 0) {

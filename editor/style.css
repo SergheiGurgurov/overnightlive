@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+}
+
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 70px;
+    background-color: #c6c6c6;
+}
+
+#toolbar * {
+    margin-bottom: 6px;
+}
+
+.drawing-board {
+    flex-grow: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+canvas {
+    position: absolute;
+    align-self: center;
+    vertical-align: middle;
+}

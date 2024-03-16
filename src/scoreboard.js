@@ -50,7 +50,10 @@ function getScoreboardEncoded() {
             return value;
         }
     }
-    return JSON.stringify(scoreBoard, replacer);
+    return JSON.stringify({
+        type:"scoreboard-update",
+        data:scoreBoard
+    }, replacer);
 }
 
 
