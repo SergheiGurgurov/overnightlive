@@ -29,6 +29,15 @@ router.get("/editor",(req,res)=>{
 
 app.use("/overnightlive",router)
 
+app.get("/",(req, res) => {
+    simpleBundler.bundle(path.join(__dirname, '../overlay/index.html'), (err, html) => {
+        if(err){
+            res.status(500).json(err).end();
+        }
+        res.status(200).send(html).end();
+    })
+})
+
 const server = http.createServer(app);
 
 

@@ -62,7 +62,7 @@ function renderEmojiCounters(data) {
 }
 
 var socketProtocol = window.location.protocol == "https:" ? "wss:" : "ws:";
-var socket = new WebSocket(`${socketProtocol}//${window.location.host}`);
+var socket = new WebSocket(`${socketProtocol}//${window.location.host}/overnightlive`);
 
 /**@type {HTMLCanvasElement} */
 const canvas = document.querySelector("canvas")
