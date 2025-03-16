@@ -1,6 +1,8 @@
 {
     "channels": [
-        "cerbero_podcast","Onion2D","cipo_unch","animenightlive"
+        "Onion2D",
+        "cipo_unch",
+        "arkanightlive"
     ],
     "contestants": [
         {
